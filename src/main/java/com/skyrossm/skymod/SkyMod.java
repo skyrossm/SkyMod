@@ -1,8 +1,10 @@
 package com.skyrossm.skymod;
 
 import com.skyrossm.skymod.handler.ConfigHandler;
+import com.skyrossm.skymod.init.ModBlocks;
 import com.skyrossm.skymod.init.ModItems;
 import com.skyrossm.skymod.item.ItemTest;
+import com.skyrossm.skymod.network.PacketHandler;
 import com.skyrossm.skymod.proxy.IProxy;
 import com.skyrossm.skymod.reference.Reference;
 import com.skyrossm.skymod.util.LogHelper;
@@ -27,21 +29,22 @@ public class SkyMod{
     public static IProxy proxy;
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event){
         ConfigHandler.init(event.getSuggestedConfigurationFile());
+
         MinecraftForge.EVENT_BUS.register(new ConfigHandler());
+
         ModItems.init();
+        ModBlocks.init();
+        PacketHandler.init();
+
         LogHelper.info("Pre Init Complete.");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event){
-        if(event.getSide() == Side.CLIENT)
-        {
-            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-
-            renderItem.getItemModelMesher().register(ModItems.testItem, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((ItemTest) ModItems.testItem).getUnlocalizedName().substring(5), "inventory"));
-        }
+        ModItems.renderInit(event.getSide());
+        ModBlocks.renderInit(event.getSide());
         LogHelper.info("Init Complete.");
     }
 

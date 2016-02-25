@@ -1,5 +1,6 @@
 package com.skyrossm.skymod.item;
 
+import com.skyrossm.skymod.creativetab.CreativeTab;
 import com.skyrossm.skymod.reference.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -15,7 +16,7 @@ public class ItemSkyMod extends Item{
     public ItemSkyMod(){
         super();
         setMaxStackSize(1);
-        setCreativeTab(CreativeTabs.tabMisc);
+        setCreativeTab(CreativeTab.SKYMOD_TAB);
         setNoRepair();
     }
 
