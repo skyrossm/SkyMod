@@ -1,8 +1,13 @@
 #Items
 item.itemTest.name=Test Item
+item.itemRing.name=Ring
 
 #Blocks
 tile.blockTest.name=Test Block
+tile.oreCobalt.name=Cobalt Ore
+tile.oreSilver.name=Silver Ore
+tile.oreCopper.name=Copper Ore
+tile.oreTitanium.name=Titanium Ore
 
 #GUIs
 

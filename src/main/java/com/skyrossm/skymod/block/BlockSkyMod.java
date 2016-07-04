@@ -15,9 +15,9 @@ public class BlockSkyMod extends Block {
 
     }
 
-    public BlockSkyMod(String itemName){
+    public BlockSkyMod(String blockName){
         this();
-        setRegistryName(itemName);
-        setUnlocalizedName(itemName);
+        setRegistryName(blockName);
+        setUnlocalizedName(blockName);
     }
 }
