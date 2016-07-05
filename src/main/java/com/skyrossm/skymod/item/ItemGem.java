@@ -5,7 +5,18 @@ package com.skyrossm.skymod.item;
  */
 public class ItemGem extends ItemSkyMod {
 
-    public ItemGem(){
+    public String type;
+
+    public ItemGem(String t){
         super("itemGem");
+        type = t;
+    }
+
+    public String getType(){
+        return type;
+    }
+
+    public void setType(String t){
+        type = t;
     }
 }

@@ -1,6 +1,5 @@
 package com.skyrossm.skymod.handler;
 
-import com.google.common.eventbus.Subscribe;
 import com.skyrossm.skymod.reference.Reference;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -14,7 +13,11 @@ import java.io.File;
 public class ConfigHandler {
 
     public static Configuration config;
-    public static boolean recipeDefault = true;
+    public static boolean silverSpawn = true;
+    public static boolean copperSpawn = true;
+    public static boolean cobaltSpawn = true;
+    public static boolean titaniumSpawn = true;
+
 
     public static void init(File configFile){
         if(config == null){
@@ -31,7 +34,11 @@ public class ConfigHandler {
     }
 
     private static void loadConfig(){
-        recipeDefault = config.get(Configuration.CATEGORY_GENERAL, "recipeDefault", true, "Basic Recipe Enable/Disable [Default: true]").getBoolean(true);
+        silverSpawn = config.get(Configuration.CATEGORY_GENERAL, "silverSpawn", true, "Enable Silver Ore Generation [Default: true]").getBoolean(true);
+        copperSpawn = config.get(Configuration.CATEGORY_GENERAL, "copperSpawn", true, "Enable Copper Ore Generation [Default: true]").getBoolean(true);
+        cobaltSpawn = config.get(Configuration.CATEGORY_GENERAL, "cobaltSpawn", true, "Enable Cobalt Ore Generation [Default: true]").getBoolean(true);
+        titaniumSpawn = config.get(Configuration.CATEGORY_GENERAL, "titaniumSpawn", true, "Enable Titanium Ore Generation [Default: true]").getBoolean(true);
+
         if(config.hasChanged())
             config.save();
     }

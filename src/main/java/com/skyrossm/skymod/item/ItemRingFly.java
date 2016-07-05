@@ -1,7 +1,7 @@
 package com.skyrossm.skymod.item;
 
-import com.skyrossm.repackage.baubles.api.BaubleType;
-import com.skyrossm.repackage.baubles.api.IBauble;
+import baubles.api.BaubleType;
+import baubles.api.IBauble;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 /**
  * Created by Skyrossm on 2/23/2016.
  */
-public class ItemRingFly extends ItemSkyMod implements IBauble{
+public class ItemRingFly extends ItemSkyMod implements IBauble {
 
     public ItemRingFly(){
         super("itemRingFly");
@@ -29,6 +29,7 @@ public class ItemRingFly extends ItemSkyMod implements IBauble{
         EntityPlayer p = (EntityPlayer) player;
         NBTTagCompound playerTag = p.getEntityData();
         playerTag.setBoolean("skymod.fly", true);
+        System.out.println("Helo");
     }
 
     @Override

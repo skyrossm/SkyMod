@@ -1,19 +1,103 @@
 #Items
-item.itemTest.name=Test Item
 item.itemRing.name=Ring
+item.itemGem.name=Gem
+item.itemRingFly.name=Ring of Flight
+item.itemAoL.name=Amulet of Loss
+item.itemSilverIngot.name=Silver Ingot
+item.itemSilverSword.name=Silver Sword
+item.itemSilverPickaxe.name=Silver Pickaxe
+item.itemSilverShovel.name=Silver Shovel
+item.itemSilverAxe.name=Silver Axe
+item.itemSilverHoe.name=Silver Hoe
+
+item.itemCopperIngot.name=Copper Ingot
+item.itemCopperSword.name=Copper Sword
+item.itemCopperPickaxe.name=Copper Pickaxe
+item.itemCopperShovel.name=Copper Shovel
+item.itemCopperAxe.name=Copper Axe
+item.itemCopperHoe.name=Copper Hoe
+
+item.itemCobaltIngot.name=Cobalt Ingot
+item.itemCobaltSword.name=Cobalt Sword
+item.itemCobaltPickaxe.name=Cobalt Pickaxe
+item.itemCobaltShovel.name=Cobalt Shovel
+item.itemCobaltAxe.name=Cobalt Axe
+item.itemCobaltHoe.name=Cobalt Hoe
+
+item.itemTitaniumIngot.name=Titanium Ingot
+item.itemTitaniumSword.name=Titanium Sword
+item.itemTitaniumPickaxe.name=Titanium Pickaxe
+item.itemTitaniumShovel.name=Titanium Shovel
+item.itemTitaniumAxe.name=Titanium Axe
+item.itemTitaniumHoe.name=Titanium Hoe
+
+item.itemMagicDust.name=Magic Dust
+item.itemMagicLighter.name=Magical Lighter
+
+item.itemShadowBlade.name=Shadow Blade
+
+item.itemRing.name=Ring
+item.itemRingSuper.name=Super Ring
+item.itemRingRegen.name=Ring of Regeneration
+item.itemRingHealth.name=Ring of Health
+item.itemRingFood.name=Ring of Hunger
+
+item.itemVoidBucket.name=Void Bucket
+item.itemInfBucket.name=Water InfiaBucket
+item.itemInfBucket2.name=Lava InfiaBucket
+item.itemDirtClump.name=Dirt Clump
+item.itemSuperSword.name=Sky Sword
+item.itemCobaltShield.name=Cobalt Shield
+item.itemCobeltShield.name=Cobelt Shield
+item.itemCloudNecklace.name=Cloud Necklace
+item.itemCoalClump.name=Coal Clump
 
 #Blocks
-tile.blockTest.name=Test Block
 tile.oreCobalt.name=Cobalt Ore
 tile.oreSilver.name=Silver Ore
 tile.oreCopper.name=Copper Ore
 tile.oreTitanium.name=Titanium Ore
+tile.oreMagic.name=Magic Ore
+
+tile.blockSilver.name=Silver Block
+tile.blockCopper.name=Copper Block
+tile.blockCobalt.name=Cobalt Block
+tile.blockTitanium.name=Titanium Block
+tile.blockMagic.name=Magic Block
+
+tile.blockBlockDiamond.name=Compressed Diamond
+tile.blockBlockBlockDiamond.name=Double Compressed Diamond
 
 #GUIs
 
+
 #Achievements
+achievement.dirtClump=I'm feelin' dirty
+achievement.dirtClump.desc=Create a Dirt Clump
+achievement.peaceful=Peaceful Mode
+achievement.peaceful.desc=Craft a Ring of Hunger
+achievement.superMan=Super Man
+achievement.superMan.desc=Craft a Super Ring
+achievement.cobalt=Blue World
+achievement.cobalt.desc=Smelt some Cobalt ore
+achievement.betterThanBrewing=Better Than Brewing
+achievement.betterThanBrewing.desc=Craft a Ring of Regeneration
+achievement.iBelieve=I Believe You Can Fly
+achievement.iBelieve.desc=Craft a Ring of Flight
+achievement.secondLife=Second Life
+achievement.secondLife.desc=Craft a Ring of Health
+achievement.before=I've seen this before!
+achievement.before.desc=Craft a Cobalt Shield
+achievement.double=I learned how to bunny hop!
+achievement.double.desc=Craft a Cloud Necklace
+achievement.sunlight=No More Tears
+achievement.sunlight.desc=Craft a Ring of Sunlight
+achievement.aol=Loss Edit
+achievement.aol.desc=Die while wearing an Amulet of Loss
 
 #Keybinds
+key.categories.skymod=SkyMod
+key.superring=Super Ring Settings
 
 #CreativeTab
 itemGroup.skymod=SkyMod
