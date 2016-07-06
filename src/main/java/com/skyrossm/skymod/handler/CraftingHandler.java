@@ -76,7 +76,7 @@ public class CraftingHandler
         GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.blockBlockDiamond, true, new Object[]{ "XZX", "ZXZ", "XZX", 'X', "blockDiamond", 'Z', Blocks.obsidian }));
         GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.blockBlockBlockDiamond, true, new Object[]{ "ZXZ", "XZX", "ZXZ", 'X', ModBlocks.blockBlockBlockDiamond, 'Z', Blocks.obsidian }));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.diamond_block, 5), new Object[]{ ModBlocks.blockBlockBlockDiamond });
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.diamond_block, 5), new Object[]{ ModBlocks.blockBlockDiamond });
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blockBlockDiamond, 4), new Object[]{ ModBlocks.blockBlockBlockDiamond });
 
         //Items

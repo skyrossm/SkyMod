@@ -40,10 +40,11 @@ public class ModAchievements {
         achRingHealth.registerStat();
         achCobaltShield.registerStat();
         achCloudNecklace.registerStat();
+        achAmuletLoss.registerStat();
         AchievementPage.registerAchievementPage(new AchievementPage("SkyMod",
                 new Achievement[] {achDirtClump, achRingHunger
                         , achCobaltIngot, achRingSuper, achRingRegen
-                        , achRingFly, achRingHealth, achCobaltShield, achCloudNecklace
+                        , achRingFly, achRingHealth, achCobaltShield, achCloudNecklace, achAmuletLoss
                 }));
     }
 }

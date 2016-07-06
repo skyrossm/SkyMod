@@ -1,5 +1,6 @@
 package com.skyrossm.skymod.init;
 
+import com.skyrossm.skymod.block.BlockMagicOre;
 import com.skyrossm.skymod.block.BlockSkyMod;
 import com.skyrossm.skymod.block.BlockTest;
 import com.skyrossm.skymod.reference.Reference;
@@ -24,7 +25,7 @@ public class ModBlocks {
     public static final BlockSkyMod oreSilver = new BlockSkyMod("oreSilver");
     public static final BlockSkyMod oreCopper = new BlockSkyMod("oreCopper");
     public static final BlockSkyMod oreTitanium = new BlockSkyMod("oreTitanium");
-    public static final BlockSkyMod oreMagic = new BlockSkyMod("oreMagic");
+    public static final BlockSkyMod oreMagic = new BlockMagicOre();
 
     public static final BlockSkyMod blockBlockDiamond = new BlockSkyMod("blockBlockDiamond");
     public static final BlockSkyMod blockBlockBlockDiamond = new BlockSkyMod("blockBlockBlockDiamond");

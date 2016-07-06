@@ -5,7 +5,9 @@ import com.skyrossm.skymod.events.EventManager;
 import com.skyrossm.skymod.events.FMLCommonEventManager;
 import com.skyrossm.skymod.generation.GeneratorManager;
 import com.skyrossm.skymod.handler.ConfigHandler;
+import com.skyrossm.skymod.handler.CraftingHandler;
 import com.skyrossm.skymod.handler.FuelHandler;
+import com.skyrossm.skymod.handler.SmeltingHandler;
 import com.skyrossm.skymod.init.ModAchievements;
 import com.skyrossm.skymod.init.ModBlocks;
 import com.skyrossm.skymod.init.ModItems;
@@ -27,6 +29,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.UUID;
 
@@ -56,11 +59,27 @@ public class SkyMod{
         ModBlocks.init();
         ModAchievements.init();
         PacketHandler.init();
+        CraftingHandler.loadRecipes();
+        SmeltingHandler.loadRecipes();
         GameRegistry.registerWorldGenerator(genmanager, 0);
         GameRegistry.registerFuelHandler(new FuelHandler());
 
         MinecraftForge.EVENT_BUS.register(new EventManager());
         FMLCommonHandler.instance().bus().register(new FMLCommonEventManager());
+
+        //Ore Dictionary
+        OreDictionary.registerOre("ingotCopper", ModItems.itemCopperIngot);
+        OreDictionary.registerOre("ingotSilver", ModItems.itemSilverIngot);
+        OreDictionary.registerOre("ingotCobalt", ModItems.itemCobaltIngot);
+        OreDictionary.registerOre("ingotTitanium", ModItems.itemTitaniumIngot);
+        OreDictionary.registerOre("oreCopper", ModBlocks.oreCopper);
+        OreDictionary.registerOre("oreSilver", ModBlocks.oreSilver);
+        OreDictionary.registerOre("oreCobalt", ModBlocks.oreCobalt);
+        OreDictionary.registerOre("oreTitanium", ModBlocks.oreTitanium);
+        OreDictionary.registerOre("blockCopper", ModBlocks.blockCopper);
+        OreDictionary.registerOre("blockSilver", ModBlocks.blockSilver);
+        OreDictionary.registerOre("blockCobalt", ModBlocks.blockCobalt);
+        OreDictionary.registerOre("blockTitanium", ModBlocks.blockTitanium);
 
         LogHelper.info("Pre Init Complete.");
     }

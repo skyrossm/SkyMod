@@ -90,7 +90,7 @@ public class ModItems {
         itemAoL = new ItemAoL();
         itemGem = new ItemGem("d");
 
-        itemMagicDust = new ItemSkyMod("itemMagicDust");
+        itemMagicDust = new ItemSkyMod("itemMagicDust", 64);
 
         itemVoidBucket = new ItemVoidBucket();
         itemInfBucket = new ItemInfBucket(false, "itemInfBucket");
