@@ -5,10 +5,13 @@ import com.skyrossm.skymod.block.BlockSkyMod;
 import com.skyrossm.skymod.block.BlockTest;
 import com.skyrossm.skymod.reference.Reference;
 import com.skyrossm.skymod.util.LogHelper;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -31,56 +34,32 @@ public class ModBlocks {
     public static final BlockSkyMod blockBlockBlockDiamond = new BlockSkyMod("blockBlockBlockDiamond");
 
 
-    public static void init() {
-        oreCobalt.setHardness(5);
-        oreSilver.setHardness(5);
-        oreCopper.setHardness(5);
-        oreTitanium.setHardness(5);
-        oreMagic.setHardness(1);
-        blockCobalt.setHardness(5);
-        blockCopper.setHardness(5);
-        blockSilver.setHardness(5);
-        blockMagic.setHardness(5);
-        blockTitanium.setHardness(1);
+    public static void init(Side side) {
+        oreCobalt.setHardness(2F);
+        oreSilver.setHardness(1F);
+        oreCopper.setHardness(1F);
+        oreTitanium.setHardness(5F);
+        oreMagic.setHardness(1F);
+        blockCobalt.setHardness(4F);
+        blockCopper.setHardness(2F);
+        blockSilver.setHardness(2F);
+        blockMagic.setHardness(1F);
+        blockTitanium.setHardness(10F);
 
-        blockBlockBlockDiamond.setHardness(5);
-        blockBlockDiamond.setHardness(5);
-
-
-        GameRegistry.registerBlock(oreCobalt);
-        GameRegistry.registerBlock(oreSilver);
-        GameRegistry.registerBlock(oreCopper);
-        GameRegistry.registerBlock(oreTitanium);
-        GameRegistry.registerBlock(oreMagic);
-        GameRegistry.registerBlock(blockCobalt);
-        GameRegistry.registerBlock(blockSilver);
-        GameRegistry.registerBlock(blockCopper);
-        GameRegistry.registerBlock(blockTitanium);
-        GameRegistry.registerBlock(blockMagic);
-
-        GameRegistry.registerBlock(blockBlockBlockDiamond);
-        GameRegistry.registerBlock(blockBlockDiamond);
-
+        blockBlockBlockDiamond.setHardness(25F);
+        blockBlockDiamond.setHardness(15F);
+        registerBlocks(side, blockCopper, blockCobalt, blockSilver, blockTitanium, blockMagic, oreCobalt, oreSilver, oreCopper, oreTitanium, oreMagic, blockBlockBlockDiamond, blockBlockDiamond);
         LogHelper.info("Loaded Blocks");
     }
 
-    public static void renderInit(Side side){
-        if(side == Side.CLIENT){
-            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(blockCobalt), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) blockCobalt).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(oreCobalt), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) oreCobalt).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(oreCopper), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) oreCopper).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(oreSilver), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) oreSilver).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(oreTitanium), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) oreTitanium).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(oreMagic), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) oreMagic).getUnlocalizedName().substring(5), "inventory"));
-
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(blockCopper), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) blockCopper).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(blockSilver), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) blockSilver).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(blockTitanium), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) blockTitanium).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(blockMagic), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) blockMagic).getUnlocalizedName().substring(5), "inventory"));
-
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(blockBlockBlockDiamond), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) blockBlockBlockDiamond).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(Item.getItemFromBlock(blockBlockDiamond), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ((BlockSkyMod) blockBlockDiamond).getUnlocalizedName().substring(5), "inventory"));
+    private static void registerBlocks(Side side, Block...blocks){
+        for(Block block : blocks){
+            final ItemBlock itemBlock = new ItemBlock(block);
+            if(side == Side.CLIENT){
+                GameRegistry.register(block);
+                GameRegistry.register(itemBlock, block.getRegistryName());
+                ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+            }
         }
     }
 }

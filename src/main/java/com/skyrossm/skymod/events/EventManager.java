@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.util.Random;
 
 import com.skyrossm.skymod.SkyMod;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -12,7 +15,11 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -24,6 +31,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
 
@@ -34,7 +42,7 @@ public class EventManager {
 	int counter = 0;
 	@SubscribeEvent
 	public void livingUpdate(LivingUpdateEvent event){
-		for(Object o : event.entity.worldObj.playerEntities){
+		for(Object o : event.getEntity().getEntityWorld().playerEntities){
 			EntityPlayer player = (EntityPlayer) o;
 			if(player != null){
 				
@@ -65,7 +73,7 @@ public class EventManager {
 				}
 				NBTBase healthTag = player.getEntityData().getTag("skymod.health");
 				if(healthTag != null){
-					IAttributeInstance attributeinstance = player.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.maxHealth);
+					IAttributeInstance attributeinstance = player.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.MAX_HEALTH);
 					if(player.getEntityData().getBoolean("skymod.health")){
 			            try{
 			            	if(attributeinstance.getModifier(SkyMod.globalID) == null){
@@ -96,7 +104,7 @@ public class EventManager {
 				}
 				NBTBase shieldTag = player.getEntityData().getTag("skymod.shield");
 				if(shieldTag != null){
-					IAttributeInstance knockbackinstance = player.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.knockbackResistance);
+					IAttributeInstance knockbackinstance = player.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.KNOCKBACK_RESISTANCE);
 					if(player.getEntityData().getBoolean("skymod.shield")){
 						try{
 							knockbackinstance.applyModifier(new AttributeModifier(SkyMod.globalID, "skymod.shield", 255, 0));
@@ -115,13 +123,13 @@ public class EventManager {
 	
 	@SubscribeEvent
 	public void onJoin(EntityJoinWorldEvent event){
-		if(event.entity instanceof EntityPlayer){
-			EntityPlayer player = (EntityPlayer) event.entity;
-			IAttributeInstance healthinstance = player.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.maxHealth);
+		if(event.getEntity() instanceof EntityPlayer){
+			EntityPlayer player = (EntityPlayer) event.getEntity();
+			IAttributeInstance healthinstance = player.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.MAX_HEALTH);
 			try{
 				healthinstance.removeModifier(healthinstance.getModifier(SkyMod.globalID));
 			}catch(Exception e){}
-			IAttributeInstance knockbackinstance = player.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.knockbackResistance);
+			IAttributeInstance knockbackinstance = player.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.KNOCKBACK_RESISTANCE);
 			try{
 				knockbackinstance.removeModifier(knockbackinstance.getModifier(SkyMod.globalID));
 			}catch(Exception e){}
@@ -154,52 +162,40 @@ public class EventManager {
 		}
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.LOW)
 	public void onDeath(PlayerDropsEvent event){
-		if(event.entityLiving instanceof EntityPlayer){
-			EntityPlayer p = (EntityPlayer) event.entityLiving;
+		if(event.getEntityLiving() instanceof EntityPlayer){
+			EntityPlayer p = event.getEntityPlayer();
 			NBTBase aolTag = p.getEntityData().getTag("skymod.aol");
 			if(aolTag != null){
 				if(p.getEntityData().getBoolean("skymod.aol")){
-					event.drops.clear();
+					event.setCanceled(true);
 				}
 			}
 		}
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onDeath2(PlayerEvent.Clone event){
-		if(event.entityLiving instanceof EntityPlayer){
-			EntityPlayer p = (EntityPlayer) event.entityLiving;
-			NBTBase aolTag = p.getEntityData().getTag("skymod.aol");
-			if(aolTag != null){
-				if(p.getEntityData().getBoolean("skymod.aol")){
-					p.inventory.copyInventory(event.original.inventory);
-					p.getEntityData().setBoolean("skymod.aol", false);
-					BaublesApi.getBaubles(p).removeStackFromSlot(0);
-				}
-			}
-		}
+	    if(!event.isWasDeath()) return;
+        EntityPlayer p = event.getEntityPlayer();
+        NBTBase aolTag = p.getEntityData().getTag("skymod.aol");
+        if(aolTag != null){
+            if(p.getEntityData().getBoolean("skymod.aol")){
+                p.inventory.copyInventory(event.getOriginal().inventory);
+                p.getEntityData().setBoolean("skymod.aol", false);
+                BaublesApi.getBaublesHandler(p).setStackInSlot(0, new ItemStack(Item.getItemFromBlock(Blocks.AIR)));
+            }
+        }
 	}
 	
-	/*@SubscribeEvent
+    //@SubscribeEvent
 	public void renderOverlay(RenderGameOverlayEvent.Post event){
-		int height = Minecraft.getMinecraft().displayHeight;
-		int width = Minecraft.getMinecraft().displayWidth;
-		if(event.type == event.type.HELMET && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0){
-			if(Minecraft.getMinecraft().thePlayer.getCurrentArmor(3) != null && Minecraft.getMinecraft().thePlayer.getCurrentArmor(3).getItem() == SkyMod.itemCoolShades){
-				Tessellator tessellator = Tessellator.instance;
-				Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(SkyMod.MODID + ":textures/armor/overlay/" + "coolShades.png"));
-				GL11.glEnable(GL11.GL_BLEND);
-				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		        tessellator.startDrawingQuads();
-		        tessellator.addVertexWithUV(0.0D, height / 2 + height / 3.35, 0.0D, 0.0D, 1.D);
-		        tessellator.addVertexWithUV(width / 2.00, height / 2 + height / 3.35, 0.0D, 1.0D, 1.0D);
-		        tessellator.addVertexWithUV(width / 2.00, 0.0D, 0.0D, 1.0D, 0.0D);
-		        tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
-		        tessellator.draw();
-				GL11.glDisable(GL11.GL_BLEND);	
-			}
-		}
-	}*/
+	    if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT){
+            Minecraft mc = Minecraft.getMinecraft();
+            ScaledResolution res = event.getResolution();
+            FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
+            fr.drawStringWithShadow("Testing", 2, 2, Color.MAGENTA.getRGB());
+        }
+	}
 }

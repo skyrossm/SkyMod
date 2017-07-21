@@ -1,6 +1,5 @@
 package com.skyrossm.skymod.item;
 
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import org.lwjgl.input.Keyboard;
 
@@ -50,7 +49,7 @@ public class ItemCloudNecklace extends ItemSkyMod implements IBauble{
                     Random rand = new Random();
 					p.getEntityWorld().spawnParticle(EnumParticleTypes.SMOKE_NORMAL, p.getPosition().getX(), p.getPosition().getY(), p.getPosition().getZ(), 0D, 0D, 0D);
                     for(int i = 1;i < 16;i++){
-                        p.getEntityWorld().spawnParticle(EnumParticleTypes.SMOKE_NORMAL, p.getPosition().getX(), p.getPosition().getY(), p.getPosition().getZ(), 0D + rand.nextInt(i), 0D + rand.nextInt(i), 0D + rand.nextInt(i));
+                        p.getEntityWorld().spawnParticle(EnumParticleTypes.SMOKE_NORMAL, p.getPosition().getX(), p.getPosition().getY(), p.getPosition().getZ(), 0.5D, 0D, 0.5D);
                     }
 				}else{
 					hasJumped = true;

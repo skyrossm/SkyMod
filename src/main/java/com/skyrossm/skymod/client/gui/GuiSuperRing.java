@@ -24,7 +24,7 @@ public class GuiSuperRing extends GuiScreen{
 	public static boolean regen = true; 
 	
 	public GuiSuperRing() {
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayer player = Minecraft.getMinecraft().player;
 		NBTBase flyTag = player.getEntityData().getTag("skymod.fly");
 		NBTBase healthTag = player.getEntityData().getTag("skymod.health");
 		NBTBase foodTag = player.getEntityData().getTag("skymod.food");
@@ -86,7 +86,7 @@ public class GuiSuperRing extends GuiScreen{
 	
 	@Override
 	public void onGuiClosed(){
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayer player = Minecraft.getMinecraft().player;
 		SkyMod.setPlayerData(player, flying, health, food, regen);
 		PacketHandler.INSTANCE.sendToServer(new PacketSuperRing("set," + flying + "," +  health + "," +  food + "," + regen));
 	}

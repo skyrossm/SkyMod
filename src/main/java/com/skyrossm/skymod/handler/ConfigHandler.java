@@ -28,7 +28,7 @@ public class ConfigHandler {
 
     @SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event){
-        if(event.modID.equalsIgnoreCase(Reference.MOD_ID)){
+        if(event.getModID().equalsIgnoreCase(Reference.MOD_ID)){
             loadConfig();
         }
     }

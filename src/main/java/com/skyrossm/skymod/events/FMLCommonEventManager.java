@@ -35,7 +35,7 @@ public class FMLCommonEventManager {
 	
 	@SubscribeEvent
 	public void onKeyInput(InputEvent.KeyInputEvent event){
-		if(!(FMLClientHandler.instance().getClient().currentScreen instanceof GuiChat) && FMLClientHandler.instance().getClient().theWorld.isRemote){
+		if(!(FMLClientHandler.instance().getClient().currentScreen instanceof GuiChat) && FMLClientHandler.instance().getClient().world.isRemote){
 			if(ClientProxy.superRing.isPressed()){
 				SkyMod.proxy.openSuperRingGui();
 			}

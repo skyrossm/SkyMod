@@ -9,6 +9,9 @@ public class FuelHandler implements IFuelHandler {
         if(fuel.getItem() == ModItems.itemCoalClump){
             return 12800;
         }
+        if(fuel.getItem() == ModItems.itemMagicDust){
+            return 1024;
+        }
         return 0;
     }
 

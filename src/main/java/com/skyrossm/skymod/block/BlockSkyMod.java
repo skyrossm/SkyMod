@@ -9,7 +9,7 @@ import net.minecraft.block.material.Material;
  */
 public class BlockSkyMod extends Block {
     public BlockSkyMod(){
-        super(Material.rock);
+        super(Material.ROCK);
         setCreativeTab(CreativeTab.SKYMOD_TAB);
 
     }

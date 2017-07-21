@@ -3,6 +3,7 @@ package com.skyrossm.skymod.item;
 import java.util.List;
 import java.util.Random;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import com.skyrossm.skymod.creativetab.CreativeTab;
 import com.skyrossm.skymod.init.ModItems;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,7 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.EnumChatFormatting;
 
 public class ItemSkySword extends ItemSword{
 	int superUses = 100000;
@@ -44,7 +44,7 @@ public class ItemSkySword extends ItemSword{
 	@Override
 	public void addInformation(ItemStack is, EntityPlayer player, List lore, boolean par1) {
 		if(is.getItem() == ModItems.itemSuperSword){
-			lore.add(EnumChatFormatting.DARK_RED + "Some say it breaks randomly...");
+			lore.add(ChatFormatting.DARK_RED + "Some say it breaks randomly...");
 		}
 	}
 	

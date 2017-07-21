@@ -4,9 +4,10 @@ import com.skyrossm.skymod.item.*;
 import com.skyrossm.skymod.reference.Reference;
 import com.skyrossm.skymod.util.LogHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -78,7 +79,7 @@ public class ModItems {
     private static Item.ToolMaterial dirtMaterial = EnumHelper.addToolMaterial("dirtMaterial", 0, 2, 2F, 0.5F, 0);
     private static Item.ToolMaterial superMaterial = EnumHelper.addToolMaterial("superMaterial", 3, -1, 30.0F, 10.0F, 1);
 
-    public static void init() {
+    public static void init(Side side) {
 
         //Rings
         itemRing = new ItemSkyMod("itemRing");
@@ -134,119 +135,22 @@ public class ModItems {
         itemTitaniumAxe = new ItemSkyAxe(titaniumMaterial, "itemTitaniumAxe");
         itemTitaniumHoe = new ItemSkyHoe(titaniumMaterial, "itemTitaniumHoe");
 
-
-        //Rings
-        GameRegistry.registerItem(itemRing);
-        GameRegistry.registerItem(itemAoL);
-        GameRegistry.registerItem(itemGem);
-        GameRegistry.registerItem(itemRingFly);
-        GameRegistry.registerItem(itemRingRegen);
-        GameRegistry.registerItem(itemRingHealth);
-        GameRegistry.registerItem(itemRingFood);
-        GameRegistry.registerItem(itemRingSuper);
-
-        GameRegistry.registerItem(itemMagicDust);
-
-        //Random
-        GameRegistry.registerItem(itemVoidBucket);
-        GameRegistry.registerItem(itemInfBucket);
-        GameRegistry.registerItem(itemInfBucket2);
-        GameRegistry.registerItem(itemDirtClump);
-        GameRegistry.registerItem(itemCoalClump);
-        GameRegistry.registerItem(itemSuperSword);
-        GameRegistry.registerItem(itemCobaltShield);
-        GameRegistry.registerItem(itemCobeltShield);
-        GameRegistry.registerItem(itemCloudNecklace);
-
-        //Silver
-        GameRegistry.registerItem(itemSilverIngot);
-        GameRegistry.registerItem(itemSilverSword);
-        GameRegistry.registerItem(itemSilverPickaxe);
-        GameRegistry.registerItem(itemSilverShovel);
-        GameRegistry.registerItem(itemSilverAxe);
-        GameRegistry.registerItem(itemSilverHoe);
-
-        //Copper
-        GameRegistry.registerItem(itemCopperIngot);
-        GameRegistry.registerItem(itemCopperSword);
-        GameRegistry.registerItem(itemCopperPickaxe);
-        GameRegistry.registerItem(itemCopperShovel);
-        GameRegistry.registerItem(itemCopperAxe);
-        GameRegistry.registerItem(itemCopperHoe);
-
-        //Cobalt
-        GameRegistry.registerItem(itemCobaltIngot);
-        GameRegistry.registerItem(itemCobaltSword);
-        GameRegistry.registerItem(itemCobaltPickaxe);
-        GameRegistry.registerItem(itemCobaltShovel);
-        GameRegistry.registerItem(itemCobaltAxe);
-        GameRegistry.registerItem(itemCobaltHoe);
-
-        //Titanium
-        GameRegistry.registerItem(itemTitaniumIngot);
-        GameRegistry.registerItem(itemTitaniumSword);
-        GameRegistry.registerItem(itemTitaniumPickaxe);
-        GameRegistry.registerItem(itemTitaniumShovel);
-        GameRegistry.registerItem(itemTitaniumAxe);
-        GameRegistry.registerItem(itemTitaniumHoe);
-
+        registerItems(side, itemRing, itemRingFly, itemRingFood, itemRingHealth, itemRingRegen, itemRingSuper, itemAoL, itemGem, itemMagicDust,
+                itemVoidBucket, itemInfBucket, itemInfBucket2, itemDirtClump, itemCoalClump, itemSuperSword, itemCobaltShield, itemCobeltShield,
+                itemCloudNecklace, itemSilverIngot, itemSilverSword, itemSilverPickaxe, itemSilverShovel, itemSilverAxe, itemSilverHoe,
+                itemCopperIngot, itemCopperSword, itemCopperPickaxe, itemCopperShovel, itemCopperAxe, itemCopperHoe, itemCobaltIngot,
+                itemCobaltSword, itemCobaltPickaxe, itemCobaltShovel, itemCobaltAxe, itemCobaltHoe, itemTitaniumIngot, itemTitaniumSword,
+                itemTitaniumPickaxe, itemTitaniumShovel, itemTitaniumAxe, itemTitaniumHoe);
         LogHelper.info("Loaded Items");
     }
 
-    public static void renderInit(Side side){
-        if(side == Side.CLIENT) {
-            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-
-            renderItem.getItemModelMesher().register(ModItems.itemRing, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemRing).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemGem, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemGem).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemRingFly, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemRingFly).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemAoL, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemAoL).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCloudNecklace, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCloudNecklace).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCobeltShield, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCobeltShield).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemInfBucket, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemInfBucket).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemInfBucket2, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemInfBucket2).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemVoidBucket, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemVoidBucket).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemSuperSword, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemSuperSword).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCobaltShield, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCobaltShield).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCoalClump, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCoalClump).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemDirtClump, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemDirtClump).getUnlocalizedName().substring(5), "inventory"));
-
-            renderItem.getItemModelMesher().register(ModItems.itemMagicDust, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemMagicDust).getUnlocalizedName().substring(5), "inventory"));
-
-            renderItem.getItemModelMesher().register(ModItems.itemRingFood, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemRingFood).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemRingRegen, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemRingRegen).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemRingHealth, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemRingHealth).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemRingSuper, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemRingSuper).getUnlocalizedName().substring(5), "inventory"));
-
-            renderItem.getItemModelMesher().register(ModItems.itemSilverAxe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemSilverAxe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemSilverPickaxe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemSilverPickaxe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemSilverHoe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemSilverHoe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemSilverIngot, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemSilverIngot).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemSilverShovel, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemSilverShovel).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemSilverSword, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemSilverSword).getUnlocalizedName().substring(5), "inventory"));
-
-            renderItem.getItemModelMesher().register(ModItems.itemCopperAxe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCopperAxe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCopperPickaxe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCopperPickaxe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCopperHoe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCopperHoe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCopperIngot, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCopperIngot).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCopperShovel, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCopperShovel).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCopperSword, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCopperSword).getUnlocalizedName().substring(5), "inventory"));
-
-            renderItem.getItemModelMesher().register(ModItems.itemTitaniumAxe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemTitaniumAxe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemTitaniumHoe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemTitaniumHoe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemTitaniumIngot, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemTitaniumIngot).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemTitaniumPickaxe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemTitaniumPickaxe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemTitaniumShovel, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemTitaniumShovel).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemTitaniumSword, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemTitaniumSword).getUnlocalizedName().substring(5), "inventory"));
-
-            renderItem.getItemModelMesher().register(ModItems.itemCobaltAxe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCobaltAxe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCobaltHoe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCobaltHoe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCobaltIngot, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCobaltIngot).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCobaltPickaxe, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCobaltPickaxe).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCobaltShovel, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCobaltShovel).getUnlocalizedName().substring(5), "inventory"));
-            renderItem.getItemModelMesher().register(ModItems.itemCobaltSword, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + (ModItems.itemCobaltSword).getUnlocalizedName().substring(5), "inventory"));
-
-
+    private static void registerItems(Side side, Item...items){
+        for(Item item : items){
+            if(side == Side.CLIENT){
+                GameRegistry.register(item);
+                ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+            }
         }
     }
+
 }

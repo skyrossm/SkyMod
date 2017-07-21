@@ -55,17 +55,8 @@ public class SkyMod{
 
         MinecraftForge.EVENT_BUS.register(new ConfigHandler());
 
-        ModItems.init();
-        ModBlocks.init();
-        ModAchievements.init();
-        PacketHandler.init();
-        CraftingHandler.loadRecipes();
-        SmeltingHandler.loadRecipes();
-        GameRegistry.registerWorldGenerator(genmanager, 0);
-        GameRegistry.registerFuelHandler(new FuelHandler());
-
-        MinecraftForge.EVENT_BUS.register(new EventManager());
-        FMLCommonHandler.instance().bus().register(new FMLCommonEventManager());
+        ModItems.init(event.getSide());
+        ModBlocks.init(event.getSide());
 
         //Ore Dictionary
         OreDictionary.registerOre("ingotCopper", ModItems.itemCopperIngot);
@@ -81,13 +72,20 @@ public class SkyMod{
         OreDictionary.registerOre("blockCobalt", ModBlocks.blockCobalt);
         OreDictionary.registerOre("blockTitanium", ModBlocks.blockTitanium);
 
+        ModAchievements.init();
+        PacketHandler.init();
+        CraftingHandler.loadRecipes();
+        SmeltingHandler.loadRecipes();
+        GameRegistry.registerWorldGenerator(genmanager, 0);
+        GameRegistry.registerFuelHandler(new FuelHandler());
+
+        MinecraftForge.EVENT_BUS.register(new EventManager());
+        FMLCommonHandler.instance().bus().register(new FMLCommonEventManager());
         LogHelper.info("Pre Init Complete.");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event){
-        ModItems.renderInit(event.getSide());
-        ModBlocks.renderInit(event.getSide());
         proxy.registerKeyBinds();
         NetworkRegistry.INSTANCE.registerGuiHandler(SkyMod.instance, new GuiHandler());
         LogHelper.info("Init Complete.");

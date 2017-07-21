@@ -14,12 +14,12 @@ public class CraftingHandler
     public static void loadRecipes()
     {
         //Rings
-        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRing, new Object[]{ "ingotCobalt", "ironIngot", Items.lava_bucket}));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRing, new Object[]{ "ingotCobalt", "ingotSilver", Items.lava_bucket}));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRingFly, new Object[]{ "blockDiamond", "blockCobalt", Items.feather, ModItems.itemRing, ModBlocks.blockMagic, "gemDiamond"}));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRingRegen, new Object[]{ ModBlocks.blockBlockDiamond, "ingotCobalt", Items.beef, ModItems.itemRing, ModBlocks.blockMagic, "gemDiamond"}));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRingHealth, new Object[]{ "blockCobalt", Items.golden_apple, ModItems.itemRing, ModBlocks.blockMagic, "gemDiamond"}));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRingFood, new Object[]{ ModBlocks.blockBlockDiamond, "blockCobalt", Items.cake, ModItems.itemRing, ModBlocks.blockMagic, "gemDiamond"}));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRing, new Object[]{ "ingotCobalt", "ironIngot", Items.LAVA_BUCKET}));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRing, new Object[]{ "ingotCobalt", "ingotSilver", Items.LAVA_BUCKET}));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRingFly, new Object[]{ "blockDiamond", "blockCobalt", Items.FEATHER, ModItems.itemRing, ModBlocks.blockMagic, "gemDiamond"}));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRingRegen, new Object[]{ ModBlocks.blockBlockDiamond, "ingotCobalt", Items.BEEF, ModItems.itemRing, ModBlocks.blockMagic, "gemDiamond"}));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRingHealth, new Object[]{ "blockCobalt", Items.GOLDEN_APPLE, ModItems.itemRing, ModBlocks.blockMagic, "gemDiamond"}));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRingFood, new Object[]{ ModBlocks.blockBlockDiamond, "blockCobalt", Items.CAKE, ModItems.itemRing, ModBlocks.blockMagic, "gemDiamond"}));
         GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.itemRingSuper, new Object[]{ ModItems.itemRingFly, "gemDiamond", ModItems.itemRingFood, ModItems.itemRingHealth, ModItems.itemRingRegen, ModBlocks.blockBlockBlockDiamond, ModBlocks.blockMagic }));
 
         //Blocks
@@ -27,7 +27,7 @@ public class CraftingHandler
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemSilverIngot, 9), new Object[]{ "blockSilver"}));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemCopperIngot, 9), new Object[]{ "blockCopper"}));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemTitaniumIngot, 9), new Object[]{ "blockTitanium"}));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemMagicDust, 9), new Object[]{ ModBlocks.blockMagic}));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemMagicDust, 4), new Object[]{ ModBlocks.blockMagic}));
 
         //Silver
         GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.itemSilverAxe, true, new Object[]{ " XX", " YX", " Y ", 'X', "ingotSilver", 'Y', "stickWood" }));
@@ -73,21 +73,21 @@ public class CraftingHandler
 
         GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.blockMagic, true, new Object[]{ "XX", "XX", 'X', ModItems.itemMagicDust }));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.blockBlockDiamond, true, new Object[]{ "XZX", "ZXZ", "XZX", 'X', "blockDiamond", 'Z', Blocks.obsidian }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.blockBlockBlockDiamond, true, new Object[]{ "ZXZ", "XZX", "ZXZ", 'X', ModBlocks.blockBlockBlockDiamond, 'Z', Blocks.obsidian }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.blockBlockDiamond, true, new Object[]{ "XZX", "ZXZ", "XZX", 'X', "blockDiamond", 'Z', Blocks.OBSIDIAN }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.blockBlockBlockDiamond, true, new Object[]{ "ZXZ", "XZX", "ZXZ", 'X', ModBlocks.blockBlockBlockDiamond, 'Z', Blocks.OBSIDIAN }));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.diamond_block, 5), new Object[]{ ModBlocks.blockBlockDiamond });
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.DIAMOND_BLOCK, 5), new Object[]{ ModBlocks.blockBlockDiamond });
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blockBlockDiamond, 4), new Object[]{ ModBlocks.blockBlockBlockDiamond });
 
         //Items
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemDirtClump), new Object[]{ Blocks.dirt, Blocks.dirt, Blocks.dirt }));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemCoalClump), new Object[]{ Items.coal, Items.coal, Items.coal, Items.coal, Items.coal, Items.coal, Items.coal, Items.coal}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.itemSuperSword, true, new Object[]{ "RXR", "RXR", "OSO", 'X', ModBlocks.blockBlockBlockDiamond, 'R', Items.redstone, 'O', Blocks.obsidian, 'S', "stickWood"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.itemVoidBucket, new Object[]{ "XYX", "CXC", 'X', Blocks.obsidian, 'Y', Items.ender_pearl, 'C', Items.blaze_rod }));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemInfBucket), new Object[]{ "gemDiamond", Items.water_bucket, "ingotCobalt" }));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemInfBucket2), new Object[]{ ModBlocks.blockBlockBlockDiamond, Items.lava_bucket, "blockCobalt" }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.itemCobaltShield, true, new Object[]{ "RXR", "RCR", 'R', Blocks.obsidian, 'X', "blockCobalt", 'C', "ingotGold"}));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemCobeltShield), new Object[]{ ModItems.itemCobaltShield, Items.leather}));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemDirtClump), new Object[]{ Blocks.DIRT, Blocks.DIRT, Blocks.DIRT }));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemCoalClump), new Object[]{ Items.COAL, Items.COAL, Items.COAL, Items.COAL, Items.COAL, Items.COAL, Items.COAL, Items.COAL}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.itemSuperSword, true, new Object[]{ "RXR", "RXR", "OSO", 'X', ModBlocks.blockBlockBlockDiamond, 'R', Items.REDSTONE, 'O', Blocks.OBSIDIAN, 'S', "stickWood"}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.itemVoidBucket, new Object[]{ "XYX", "CXC", 'X', Blocks.OBSIDIAN, 'Y', Items.ENDER_PEARL, 'C', Items.BLAZE_ROD }));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemInfBucket), new Object[]{ "gemDiamond", Items.WATER_BUCKET, "ingotCobalt" }));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemInfBucket2), new Object[]{ ModBlocks.blockBlockBlockDiamond, Items.LAVA_BUCKET, "blockCobalt" }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.itemCobaltShield, true, new Object[]{ "RXR", "RCR", 'R', Blocks.OBSIDIAN, 'X', "blockCobalt", 'C', "ingotGold"}));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemCobeltShield), new Object[]{ ModItems.itemCobaltShield, Items.LEATHER}));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemCloudNecklace), new Object[]{ "ingotCobalt", "ironIngot", ModBlocks.blockMagic}));
     }
 }

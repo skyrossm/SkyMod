@@ -8,9 +8,7 @@ import com.skyrossm.skymod.init.ModItems;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.IWorldAccess;
 import net.minecraft.world.World;
 
 public class BlockMagicOre extends BlockSkyMod{

@@ -25,7 +25,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void jumpHelper(){
-        EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
+        EntityPlayer player = FMLClientHandler.instance().getClient().player;
         if(player.onGround == false){
             player.getEntityData().setBoolean("skymod.jump", true);
         }
@@ -33,8 +33,8 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void openSuperRingGui(){
-        ItemStack slot1 = BaublesApi.getBaubles(FMLClientHandler.instance().getClient().thePlayer).getStackInSlot(1);
-        ItemStack slot2 = BaublesApi.getBaubles(FMLClientHandler.instance().getClient().thePlayer).getStackInSlot(2);
+        ItemStack slot1 = BaublesApi.getBaubles(FMLClientHandler.instance().getClient().player).getStackInSlot(1);
+        ItemStack slot2 = BaublesApi.getBaubles(FMLClientHandler.instance().getClient().player).getStackInSlot(2);
         if(slot1 != null && slot1.getItem() == ModItems.itemRingSuper){
             Minecraft.getMinecraft().displayGuiScreen(new GuiSuperRing());
         }else if(slot2 != null && slot2.getItem() == ModItems.itemRingSuper){

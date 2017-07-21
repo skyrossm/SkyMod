@@ -1,5 +1,6 @@
 {
+	"forge_marker": 1,
     "variants": {
-        "normal": { "model": "skymod:blockBlockDiamond" }
+        "normal": { "model": "skymod:blockblockdiamond" }
     }
 }

@@ -17,7 +17,7 @@ public class ModAchievements {
     public static Achievement achCobaltShield;
     public static Achievement achRingHealth;
     public static Achievement achCloudNecklace;
-    public static Achievement achAmuletLoss;
+    //public static Achievement achAmuletLoss;
 
     public static void init(){
         achDirtClump = new Achievement("achievement.dirtclump", "dirtClump", 0, 0, ModItems.itemDirtClump, (Achievement) null);
@@ -29,7 +29,7 @@ public class ModAchievements {
         achRingHealth = new Achievement("achievement.secondlife", "secondLife", 3, 0, ModItems.itemRingHealth, (Achievement) null);
         achCobaltShield = new Achievement("achievement.before", "before", 0, 1, ModItems.itemCobeltShield, (Achievement) null);
         achCloudNecklace = new Achievement("achievement.double", "double", 1, 1, ModItems.itemCloudNecklace, (Achievement) null);
-        achAmuletLoss = new Achievement("achievement.aol", "loss", 3, 1, ModItems.itemAoL, (Achievement) null);
+        //achAmuletLoss = new Achievement("achievement.aol", "loss", 3, 1, ModItems.itemAoL, (Achievement) null);
 
         achDirtClump.registerStat();
         achRingHunger.registerStat();
@@ -40,11 +40,11 @@ public class ModAchievements {
         achRingHealth.registerStat();
         achCobaltShield.registerStat();
         achCloudNecklace.registerStat();
-        achAmuletLoss.registerStat();
+       // achAmuletLoss.registerStat();
         AchievementPage.registerAchievementPage(new AchievementPage("SkyMod",
                 new Achievement[] {achDirtClump, achRingHunger
                         , achCobaltIngot, achRingSuper, achRingRegen
-                        , achRingFly, achRingHealth, achCobaltShield, achCloudNecklace, achAmuletLoss
+                        , achRingFly, achRingHealth, achCobaltShield, achCloudNecklace/*, achAmuletLoss */
                 }));
     }
 }

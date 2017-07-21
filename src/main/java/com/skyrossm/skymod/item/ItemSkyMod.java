@@ -30,6 +30,14 @@ public class ItemSkyMod extends Item{
         setMaxStackSize(maxStackSize);
     }
 
+    public ItemSkyMod(String itemName, int maxStackSize, int maxDamage){
+        this();
+        setRegistryName(itemName);
+        setUnlocalizedName(itemName);
+        setMaxStackSize(maxStackSize);
+        setMaxDamage(maxDamage);
+    }
+
     @SideOnly(Side.CLIENT)
     public boolean isFull3D()
     {
