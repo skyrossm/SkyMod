@@ -55,9 +55,9 @@ public class ModBlocks {
     private static void registerBlocks(Side side, Block...blocks){
         for(Block block : blocks){
             final ItemBlock itemBlock = new ItemBlock(block);
+            GameRegistry.register(block);
+            GameRegistry.register(itemBlock, block.getRegistryName());
             if(side == Side.CLIENT){
-                GameRegistry.register(block);
-                GameRegistry.register(itemBlock, block.getRegistryName());
                 ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
             }
         }

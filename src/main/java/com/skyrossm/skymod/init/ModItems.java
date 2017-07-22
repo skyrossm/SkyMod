@@ -146,8 +146,8 @@ public class ModItems {
 
     private static void registerItems(Side side, Item...items){
         for(Item item : items){
+            GameRegistry.register(item);
             if(side == Side.CLIENT){
-                GameRegistry.register(item);
                 ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
             }
         }
